@@ -1,38 +1,23 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
-
-	"github.com/jroimartin/gocui"
+	"os"
 )
 
 func main() {
-	// log.SetFlags(0)
-	// r := bufio.NewReader(os.Stdin)
-	g, err := gocui.NewGui(gocui.Output256)
-	if err != nil {
-		panic(err)
-	}
-	defer g.Close()
+	log.SetFlags(0)
+	r := bufio.NewReader(os.Stdin)
 
-	g.SetManagerFunc(layout)
+	for {
+		carte1 := getNumber(r, "What is the value of your first card?")
+		carte2 := getNumber(r, "What is the value of your second card?")
 
-	if err := g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, quit); err != nil {
-		log.Panicln(err)
+		// log.Println(whatShouldIdo(carte1, carte2))
+		log.Println(states[carte1-1][carte2-1])
 	}
-	if err := g.MainLoop(); err != nil && err != gocui.ErrQuit {
-		log.Panicln(err)
-	}
-
-	// for {
-	// 	g.
-	// 	carte1 := getNumber(r, "Quelle est la valeur de votre première carte?")
-	// 	carte2 := getNumber(r, "Quelle est la valeur de votre deuxième carte?")
-	//
-	// 	// log.Println(whatShouldIdo(carte1, carte2))
-	// 	log.Println(states[carte1-1][carte2-1])
-	// }
 }
 
 func whatShouldIdo(num1, num2 int) string {

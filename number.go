@@ -18,7 +18,7 @@ func getNumber(r *bufio.Reader, question string) int {
 	carte1, err := strconv.Atoi(string(carte1s))
 
 	if err != nil {
-		log.Println("Mettez un chiffre entre 1-10.")
+		log.Println("Put a number in between 1-10.")
 		return getNumber(r, question)
 	}
 
